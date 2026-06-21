@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fa3u3sv2owa1"
-path="res://.godot/imported/3_dots_small.png-c041e7602fa4fbaae526a4199db92ca3.ctex"
+uid="uid://cbo5rypyxrkxx"
+path="res://.godot/imported/alien_socks.png-4da33348a5ac2d3b4d06d853d7974a9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://3_dots_small.png"
-dest_files=["res://.godot/imported/3_dots_small.png-c041e7602fa4fbaae526a4199db92ca3.ctex"]
+source_file="res://assets/alien_socks.png"
+dest_files=["res://.godot/imported/alien_socks.png-4da33348a5ac2d3b4d06d853d7974a9e.ctex"]
 
 [params]
 
