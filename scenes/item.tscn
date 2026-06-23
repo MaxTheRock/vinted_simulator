@@ -196,7 +196,7 @@ position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_ccrme")
 frame_progress = 0.0037963928
 
-[node name="t_shirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=659182065 groups=["clothes"]]
+[node name="tshirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=659182065 groups=["clothes"]]
 material = SubResource("ShaderMaterial_s8enn")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_qnalp")

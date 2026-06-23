@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ed7j3rpvwggq" path="res://scripts/main_ui.gd" id="1_j6a7c"]
 [ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://assets/default_pfp.png" id="2_scoti"]
 [ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="3_e6fyy"]
+[ext_resource type="Script" uid="uid://b6xai0ehay28i" path="res://scenes/product_details.gd" id="3_j6a7c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktt6o"]
 content_margin_top = 10.0
@@ -27,6 +28,14 @@ border_width_bottom = 3
 border_color = Color(0.47397572, 0.47397578, 0.47397548, 1)
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnalp"]
+bg_color = Color(0.14044765, 0.14044744, 0.14044729, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
 
 [node name="MainUI" type="Control" unique_id=68240334]
 layout_mode = 3
@@ -201,7 +210,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Centre" unique_id=2081514701]
-custom_minimum_size = Vector2(300, 650)
+custom_minimum_size = Vector2(300, 900)
 layout_mode = 2
 theme_override_constants/margin_left = 47
 theme_override_constants/margin_top = 48
@@ -219,10 +228,11 @@ custom_minimum_size = Vector2(300, 800)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
+columns = 6
 
 [node name="Product_Details" type="VBoxContainer" parent="Market/VBoxContainer/Sections" unique_id=1319744705]
 layout_mode = 2
+script = ExtResource("3_j6a7c")
 
 [node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details" unique_id=1874816033]
 custom_minimum_size = Vector2(400, 600)
@@ -255,6 +265,86 @@ layout_mode = 2
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("3_e6fyy")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=198108291]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2" unique_id=1258101456]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=799013485]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1853445307]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer" unique_id=762567271]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Type" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1513295590]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=812606625]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2" unique_id=1344653696]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Color" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=370805848]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1025536655]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3" unique_id=894068711]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Price" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=1638985008]
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1474408726]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer4" unique_id=1072958403]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Shipping" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer" unique_id=1230396515]
+layout_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=551807822]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5" unique_id=1024107564]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Condition" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer" unique_id=877897170]
+layout_mode = 2
 
 [node name="Newspaper" type="Control" parent="." unique_id=1012253715]
 visible = false
