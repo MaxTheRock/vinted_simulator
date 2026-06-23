@@ -1,14 +1,118 @@
 [gd_scene format=3 uid="uid://di6we0plbswek"]
 
-[ext_resource type="Shader" uid="uid://cc53so52ge6d7" path="res://shaders/color_swap_t_shirt.gdshader" id="1_s8enn"]
 [ext_resource type="Script" uid="uid://tbywie77pqmn" path="res://scripts/item.gd" id="1_vljjh"]
 [ext_resource type="Script" uid="uid://c7ybfo8tiw0an" path="res://scripts/texture_button.gd" id="2_ro5b8"]
 [ext_resource type="Texture2D" uid="uid://cpy50tcly2pbg" path="res://shaders/tshirt_colours.png" id="2_vljjh"]
+[ext_resource type="Texture2D" uid="uid://bynwrv6eeng65" path="res://assets/items/socks/socks.png" id="3_5vp5n"]
+[ext_resource type="Texture2D" uid="uid://brxnaufw0d58v" path="res://assets/items/trousers/trousers_1.png" id="3_34t5m"]
+[ext_resource type="Texture2D" uid="uid://d1muofsn5r0kc" path="res://assets/items/trousers/trousers_2.png" id="4_j134a"]
 [ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="5_d265e"]
+[ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="5_j134a"]
+[ext_resource type="Texture2D" uid="uid://cltecdlvxgucv" path="res://shaders/socks_colours.png" id="6_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://b28vvux2h0bny" path="res://assets/items/tshirt/tshirt_2.png" id="6_5vp5n"]
+[ext_resource type="Texture2D" uid="uid://6ckxqo3jsxrf" path="res://assets/items/shorts/shorts_1.png" id="10_2xo3q"]
+[ext_resource type="Texture2D" uid="uid://8pq6tvacaqbl" path="res://assets/items/shorts/shorts_2.png" id="11_3l6h1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34t5m"]
+shader = ExtResource("5_j134a")
+shader_parameter/palette_texture = ExtResource("6_2xo3q")
+shader_parameter/color_count = 6
+shader_parameter/palette_count = 10
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4387"]
+atlas = ExtResource("3_5vp5n")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0cwl"]
+atlas = ExtResource("3_5vp5n")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr48l"]
+atlas = ExtResource("3_5vp5n")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34t5m"]
+atlas = ExtResource("3_5vp5n")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j134a"]
+atlas = ExtResource("3_5vp5n")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4387")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0cwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr48l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34t5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j134a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_34t5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j134a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_xr48l"]
+code = "shader_type canvas_item;
+// used a tutorial here i can't lie.
+uniform sampler2D palette_texture : filter_nearest;
+uniform int color_count = 5;     // How many colors per palette (columns)
+uniform int palette_count = 10;   // Total number of palettes (rows)
+instance uniform int palette_index = 0;
+uniform float tolerance = 0.15;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    vec4 final_color = current_color;
+
+    // row index 0 contains the original reference colors.
+    float original_y = 0.5 / float(palette_count);
+    float target_y = (float(palette_index) + 0.5) / float(palette_count);
+
+    for (int i = 0; i < color_count; i++) {
+        float uv_x = (float(i) + 0.5) / float(color_count);
+        
+        // read original color from row 0.
+        vec4 orig_color = texture(palette_texture, vec2(uv_x, original_y));
+
+        if (distance(current_color.rgb, orig_color.rgb) < tolerance) {
+            vec4 target_color = texture(palette_texture, vec2(uv_x, target_y));
+            final_color.rgb = target_color.rgb;
+            break;
+        }
+    }
+
+    COLOR = vec4(final_color.rgb, current_color.a);
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s8enn"]
-shader = ExtResource("1_s8enn")
+shader = SubResource("Shader_xr48l")
 shader_parameter/palette_texture = ExtResource("2_vljjh")
 shader_parameter/color_count = 5
 shader_parameter/palette_count = 10
@@ -28,6 +132,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwrc3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_2xo3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3l6h1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -36,8 +154,27 @@ offset_right = 64.0
 offset_bottom = 64.0
 script = ExtResource("2_ro5b8")
 
-[node name="item_sprite" type="AnimatedSprite2D" parent="TextureButton" unique_id=659182065]
+[node name="socks" type="AnimatedSprite2D" parent="TextureButton" unique_id=1203222321 groups=["clothes"]]
+material = SubResource("ShaderMaterial_34t5m")
+position = Vector2(32, 32)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_6snss")
+frame_progress = 0.2564286
+
+[node name="trousers" type="AnimatedSprite2D" parent="TextureButton" unique_id=1100261359 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_ccrme")
+frame_progress = 0.0037963928
+
+[node name="t_shirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=659182065 groups=["clothes"]]
 material = SubResource("ShaderMaterial_s8enn")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_qnalp")
-frame_progress = 0.69865274
+frame_progress = 0.39821276
+
+[node name="shorts" type="AnimatedSprite2D" parent="TextureButton" unique_id=743636722 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_dwrc3")
+
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_texture_button_mouse_exited"]

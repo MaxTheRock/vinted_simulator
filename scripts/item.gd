@@ -1,7 +1,7 @@
 extends Node2D
 
 var colours = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
-var items = ["tshirt"]
+var items = ["t_shirt","socks","trousers","shorts"]
 var rng = RandomNumberGenerator.new()
 var number = 0
 var color = ""
@@ -9,32 +9,83 @@ var shippingTime = 0
 var condition = "Good"
 var condition_price_mult = 1
 var price = 0
+var type = ""
 
-@onready var sprite: AnimatedSprite2D = $TextureButton/item_sprite;
+@onready var tshirt_sprite: AnimatedSprite2D = $TextureButton/t_shirt
+@onready var socks_sprite: AnimatedSprite2D = $TextureButton/socks
+@onready var trouser_sprite: AnimatedSprite2D = $TextureButton/trousers
+@onready var shorts_sprite: AnimatedSprite2D = $TextureButton/shorts
 
 func _ready() -> void:
-	generate_parameters(items.pick_random())
-	switch_shirt(number);
+	rng.randomize()
+	type = items[rng.randi_range(0, items.size() - 1)]
+	generate_parameters(type)
+	set_item_type(type)
+	if type == "t_shirt":
+		switch_shirt(tshirt_sprite, number);
+	elif type == "socks":
+		switch_shirt(socks_sprite, number);
+	
 
-func _process(delta: float) -> void:
-	if $TextureButton.hovered_item == true:
-		sprite.play("default")
-	else:
-		sprite.stop()
+func set_item_type(item_type: String) -> void:
+	for child in get_tree().get_nodes_in_group("clothes"):
+		if child.owner == self: # does not modify all other sprites 
+			child.visible = (child.name == item_type)
+	
+func _on_texture_button_mouse_entered():
+	for child in get_tree().get_nodes_in_group("clothes"):
+		if child.visible and child is AnimatedSprite2D and child.owner == self:
+			child.play("default")
+
+func _on_texture_button_mouse_exited():
+	for child in get_tree().get_nodes_in_group("clothes"):
+		if child.visible and child is AnimatedSprite2D and child.owner == self:
+			child.stop()
+			child.frame = 0
 
 func generate_parameters(type):
-	if type == "tshirt":
+	if type == "t_shirt":
 		number = rng.randi_range(0, 9)
 		color = colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		condition = "Good"
 		if condition == "Good":
 			condition_price_mult = 1
-		price = snapped(2 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-
-func switch_shirt(num):
-	set_node_palette(tshirt_sprite, num)
+		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		
+	elif type == "socks":
+		number = rng.randi_range(0, 9)
+		color = colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = "Good"
+		if condition == "Good":
+			condition_price_mult = 1
+		price = snapped(1.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	
+	elif type == "trousers":
+		number = rng.randi_range(0, 9)
+		color = colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = "Good"
+		if condition == "Good":
+			condition_price_mult = 1
+		price = snapped(4.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		
+	elif type == "shorts":
+		number = rng.randi_range(0, 9)
+		color = colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = "Good"
+		if condition == "Good":
+			condition_price_mult = 1
+		price = snapped(3 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		
+		
+		
+func switch_shirt(sprite, num):
+	set_node_palette(sprite, num)
 
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
+	print(target_sprite.name, " material: ", target_sprite.material, " is_shader: ", target_sprite.material is ShaderMaterial)
 	if target_sprite and target_sprite.material is ShaderMaterial:
 		target_sprite.set_instance_shader_parameter("palette_index", num)
