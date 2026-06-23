@@ -3,13 +3,11 @@
 [ext_resource type="Script" uid="uid://tbywie77pqmn" path="res://scripts/item.gd" id="1_vljjh"]
 [ext_resource type="Script" uid="uid://c7ybfo8tiw0an" path="res://scripts/texture_button.gd" id="2_ro5b8"]
 [ext_resource type="Texture2D" uid="uid://cpy50tcly2pbg" path="res://shaders/tshirt_colours.png" id="2_vljjh"]
-[ext_resource type="Texture2D" uid="uid://bynwrv6eeng65" path="res://assets/items/socks/socks.png" id="3_5vp5n"]
 [ext_resource type="Texture2D" uid="uid://brxnaufw0d58v" path="res://assets/items/trousers/trousers_1.png" id="3_34t5m"]
 [ext_resource type="Texture2D" uid="uid://d1muofsn5r0kc" path="res://assets/items/trousers/trousers_2.png" id="4_j134a"]
-[ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="5_d265e"]
 [ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="5_j134a"]
 [ext_resource type="Texture2D" uid="uid://cltecdlvxgucv" path="res://shaders/socks_colours.png" id="6_2xo3q"]
-[ext_resource type="Texture2D" uid="uid://b28vvux2h0bny" path="res://assets/items/tshirt/tshirt_2.png" id="6_5vp5n"]
+[ext_resource type="Texture2D" uid="uid://dbpmblty3ytb1" path="res://assets/items/tshirt/tshirts.png" id="8_xr48l"]
 [ext_resource type="Texture2D" uid="uid://6ckxqo3jsxrf" path="res://assets/items/shorts/shorts_1.png" id="10_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://8pq6tvacaqbl" path="res://assets/items/shorts/shorts_2.png" id="11_3l6h1"]
 
@@ -20,24 +18,27 @@ shader_parameter/color_count = 6
 shader_parameter/palette_count = 10
 shader_parameter/tolerance = 0.1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
+load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4387"]
-atlas = ExtResource("3_5vp5n")
+atlas = SubResource("CompressedTexture2D_34t5m")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0cwl"]
-atlas = ExtResource("3_5vp5n")
+atlas = SubResource("CompressedTexture2D_34t5m")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xr48l"]
-atlas = ExtResource("3_5vp5n")
+atlas = SubResource("CompressedTexture2D_34t5m")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34t5m"]
-atlas = ExtResource("3_5vp5n")
+atlas = SubResource("CompressedTexture2D_34t5m")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j134a"]
-atlas = ExtResource("3_5vp5n")
+atlas = SubResource("CompressedTexture2D_34t5m")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
@@ -118,14 +119,43 @@ shader_parameter/color_count = 5
 shader_parameter/palette_count = 10
 shader_parameter/tolerance = 0.1010000047975
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xo3q"]
+atlas = ExtResource("8_xr48l")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l6h1"]
+atlas = ExtResource("8_xr48l")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcwe"]
+atlas = ExtResource("8_xr48l")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ytmg"]
+atlas = ExtResource("8_xr48l")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g6oc"]
+atlas = ExtResource("8_xr48l")
+region = Rect2(256, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_d265e")
+"texture": SubResource("AtlasTexture_2xo3q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_5vp5n")
+"texture": SubResource("AtlasTexture_3l6h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngcwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ytmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g6oc")
 }],
 "loop": 1,
 "name": &"default",
@@ -170,11 +200,15 @@ frame_progress = 0.0037963928
 material = SubResource("ShaderMaterial_s8enn")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_qnalp")
-frame_progress = 0.39821276
+frame_progress = 0.032034215
 
 [node name="shorts" type="AnimatedSprite2D" parent="TextureButton" unique_id=743636722 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_dwrc3")
 
+[node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
+wait_time = 0.2
+
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="mouse_exited" from="TextureButton" to="." method="_on_texture_button_mouse_exited"]
+[connection signal="timeout" from="FrameTimer" to="." method="_on_frame_timer_timeout"]

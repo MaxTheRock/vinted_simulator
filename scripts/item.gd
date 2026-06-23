@@ -10,6 +10,8 @@ var condition = "Good"
 var condition_price_mult = 1
 var price = 0
 var type = ""
+var last_frame: int = 0
+var chosen_frame: int = 0
 
 @onready var tshirt_sprite: AnimatedSprite2D = $TextureButton/t_shirt
 @onready var socks_sprite: AnimatedSprite2D = $TextureButton/socks
@@ -25,23 +27,27 @@ func _ready() -> void:
 		switch_shirt(tshirt_sprite, number);
 	elif type == "socks":
 		switch_shirt(socks_sprite, number);
-	
 
 func set_item_type(item_type: String) -> void:
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.owner == self: # does not modify all other sprites 
+		if child.owner == self:
 			child.visible = (child.name == item_type)
 	
 func _on_texture_button_mouse_entered():
-	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.visible and child is AnimatedSprite2D and child.owner == self:
-			child.play("default")
+	$FrameTimer.start()
 
 func _on_texture_button_mouse_exited():
+	$FrameTimer.stop()
+
+func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.visible and child is AnimatedSprite2D and child.owner == self:
-			child.stop()
-			child.frame = 0
+			var max_frames = child.sprite_frames.get_frame_count("default")
+			var new_frame = rng.randi_range(0, max_frames - 1)
+			while new_frame == child.frame and max_frames > 1:
+				new_frame = rng.randi_range(0, max_frames - 1)
+			child.frame = new_frame
+			print("Frame:", child.frame)
 
 func generate_parameters(type):
 	if type == "t_shirt":

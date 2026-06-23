@@ -1,5 +1,8 @@
 extends Control
 
+var money : int = 0
+@onready var money_ui_element = $Market/VBoxContainer/PanelContainer/Right/Money_Container/Money
+
 func show_page(page_name):
 	for child in get_children():
 		child.visible = false
@@ -14,9 +17,11 @@ func generate_item() -> void:
 	var item = load("res://scenes/item_ui.tscn")
 	var item_scene = item.instantiate()
 	item_scene.set_name("item UI")
-	$Market/Sections/Centre/MarginContainer/ScrollContainer/GridContainer.add_child(item_scene)
+	$Market/VBoxContainer/Sections/Centre/MarginContainer/ScrollContainer/GridContainer.add_child(item_scene)
 	
 func _ready() -> void:
 	for n in 15:
 		generate_item()
 	
+func _process(delta: float) -> void:
+	money_ui_element.text = "$" + str(money)

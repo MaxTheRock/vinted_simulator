@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ed7j3rpvwggq" path="res://scripts/main_ui.gd" id="1_j6a7c"]
 [ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://assets/default_pfp.png" id="2_scoti"]
+[ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="3_e6fyy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktt6o"]
 content_margin_top = 10.0
@@ -37,6 +38,7 @@ grow_vertical = 2
 script = ExtResource("1_j6a7c")
 
 [node name="MainMenu" type="Control" parent="." unique_id=971330452]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -82,62 +84,111 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Market" type="Control" parent="." unique_id=82502718]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sections" type="HBoxContainer" parent="Market" unique_id=371433169]
+[node name="VBoxContainer" type="VBoxContainer" parent="Market" unique_id=1772797012]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="Navigation" type="VBoxContainer" parent="Market/Sections" unique_id=1016720758]
+[node name="PanelContainer" type="PanelContainer" parent="Market/VBoxContainer" unique_id=1589532761]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Market/Sections/Navigation" unique_id=1420489614]
+[node name="Username" type="HBoxContainer" parent="Market/VBoxContainer/PanelContainer" unique_id=221786036]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/PanelContainer/Username" unique_id=935590921]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 10
+
+[node name="Username" type="Label" parent="Market/VBoxContainer/PanelContainer/Username/MarginContainer" unique_id=496251357]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Epic_Seller123"
+
+[node name="Right" type="HBoxContainer" parent="Market/VBoxContainer/PanelContainer" unique_id=374431779]
+layout_mode = 2
+alignment = 2
+
+[node name="Money_Container" type="MarginContainer" parent="Market/VBoxContainer/PanelContainer/Right" unique_id=967823270]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 10
+
+[node name="Money" type="Label" parent="Market/VBoxContainer/PanelContainer/Right/Money_Container" unique_id=1941711158]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "$0"
+
+[node name="Time_Container" type="MarginContainer" parent="Market/VBoxContainer/PanelContainer/Right" unique_id=1175867053]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 10
+
+[node name="Time" type="Label" parent="Market/VBoxContainer/PanelContainer/Right/Time_Container" unique_id=1649869724]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "15:52 23/06/2026"
+
+[node name="Sections" type="HBoxContainer" parent="Market/VBoxContainer" unique_id=371433169]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Navigation" type="VBoxContainer" parent="Market/VBoxContainer/Sections" unique_id=1016720758]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Navigation" unique_id=1420489614]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect2" type="TextureRect" parent="Market/Sections/Navigation/MarginContainer" unique_id=1828222211]
+[node name="TextureRect2" type="TextureRect" parent="Market/VBoxContainer/Sections/Navigation/MarginContainer" unique_id=1828222211]
 custom_minimum_size = Vector2(200, 200)
 custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 texture = ExtResource("2_scoti")
 stretch_mode = 6
 
-[node name="Home" type="Button" parent="Market/Sections/Navigation" unique_id=532502981]
+[node name="Home" type="Button" parent="Market/VBoxContainer/Sections/Navigation" unique_id=532502981]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
 text = "Home"
 
-[node name="Newspaper" type="Button" parent="Market/Sections/Navigation" unique_id=554993645]
+[node name="Newspaper" type="Button" parent="Market/VBoxContainer/Sections/Navigation" unique_id=554993645]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
 text = "Newspaper"
 
-[node name="Market" type="Button" parent="Market/Sections/Navigation" unique_id=1443069504]
+[node name="Market" type="Button" parent="Market/VBoxContainer/Sections/Navigation" unique_id=1443069504]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_513t2")
 text = "Market"
 
-[node name="Trading" type="Button" parent="Market/Sections/Navigation" unique_id=2145979407]
+[node name="Trading" type="Button" parent="Market/VBoxContainer/Sections/Navigation" unique_id=2145979407]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
 text = "Trading"
 
-[node name="Options" type="Button" parent="Market/Sections/Navigation" unique_id=1922782640]
+[node name="Options" type="Button" parent="Market/VBoxContainer/Sections/Navigation" unique_id=1922782640]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
@@ -145,10 +196,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
 text = "Options
 "
 
-[node name="Centre" type="VBoxContainer" parent="Market/Sections" unique_id=463940233]
+[node name="Centre" type="VBoxContainer" parent="Market/VBoxContainer/Sections" unique_id=463940233]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Market/Sections/Centre" unique_id=2081514701]
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Centre" unique_id=2081514701]
 custom_minimum_size = Vector2(300, 650)
 layout_mode = 2
 theme_override_constants/margin_left = 47
@@ -156,34 +208,53 @@ theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 46
 theme_override_constants/margin_bottom = 42
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Market/Sections/Centre/MarginContainer" unique_id=2056421185]
+[node name="ScrollContainer" type="ScrollContainer" parent="Market/VBoxContainer/Sections/Centre/MarginContainer" unique_id=2056421185]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="Market/Sections/Centre/MarginContainer/ScrollContainer" unique_id=1944016850]
+[node name="GridContainer" type="GridContainer" parent="Market/VBoxContainer/Sections/Centre/MarginContainer/ScrollContainer" unique_id=1944016850]
 custom_minimum_size = Vector2(300, 800)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="Product_Details" type="VBoxContainer" parent="Market/Sections" unique_id=1319744705]
+[node name="Product_Details" type="VBoxContainer" parent="Market/VBoxContainer/Sections" unique_id=1319744705]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Market/Sections/Product_Details" unique_id=1874816033]
-custom_minimum_size = Vector2(200, 600)
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details" unique_id=1874816033]
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 2
-theme_override_constants/margin_top = 49
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Market/Sections/Product_Details/MarginContainer" unique_id=1536027973]
+[node name="VBoxContainer" type="VBoxContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer" unique_id=504470417]
 layout_mode = 2
-text = "Product Details"
 
-[node name="Label2" type="Label" parent="Market/Sections/Product_Details/MarginContainer" unique_id=591429619]
+[node name="PanelContainer" type="PanelContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=880618183]
 layout_mode = 2
-text = "Details"
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer" unique_id=301828227]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1980265878]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Product Information"
+
+[node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=957044384]
+custom_minimum_size = Vector2(64, 400)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer" unique_id=1810501481]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_e6fyy")
 
 [node name="Newspaper" type="Control" parent="." unique_id=1012253715]
 visible = false
