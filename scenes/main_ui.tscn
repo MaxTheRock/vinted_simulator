@@ -99,8 +99,8 @@ offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Market" unique_id=1772797012]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 1280.0
+offset_bottom = 973.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Market/VBoxContainer" unique_id=1589532761]
 layout_mode = 2
@@ -228,7 +228,7 @@ custom_minimum_size = Vector2(300, 800)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 6
+columns = 3
 
 [node name="Product_Details" type="VBoxContainer" parent="Market/VBoxContainer/Sections" unique_id=1319744705]
 layout_mode = 2
@@ -258,7 +258,6 @@ theme_override_font_sizes/font_size = 25
 text = "Product Information"
 
 [node name="MarginContainer" type="MarginContainer" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=957044384]
-custom_minimum_size = Vector2(64, 400)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Market/VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer" unique_id=1810501481]

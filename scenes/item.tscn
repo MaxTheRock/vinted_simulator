@@ -8,8 +8,11 @@
 [ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="5_j134a"]
 [ext_resource type="Texture2D" uid="uid://cltecdlvxgucv" path="res://shaders/socks_colours.png" id="6_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://dbpmblty3ytb1" path="res://assets/items/tshirt/tshirts.png" id="8_xr48l"]
-[ext_resource type="Texture2D" uid="uid://6ckxqo3jsxrf" path="res://assets/items/shorts/shorts_1.png" id="10_2xo3q"]
-[ext_resource type="Texture2D" uid="uid://8pq6tvacaqbl" path="res://assets/items/shorts/shorts_2.png" id="11_3l6h1"]
+[ext_resource type="Texture2D" uid="uid://bvhxsqvq3nc70" path="res://assets/brand_icons/elemental/minimalistic_black.png" id="9_2xo3q"]
+[ext_resource type="Texture2D" uid="uid://buf1wsry626bq" path="res://assets/brand_icons/elemental/minimalistic_white.png" id="10_3l6h1"]
+[ext_resource type="Texture2D" uid="uid://0urssekbooyl" path="res://assets/items/shoes/shoes.png" id="11_34t5m"]
+[ext_resource type="Texture2D" uid="uid://cxh8vpp801mv5" path="res://assets/brand_icons/elemental/regular.png" id="11_ngcwe"]
+[ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="12_1ytmg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34t5m"]
 shader = ExtResource("5_j134a")
@@ -162,14 +165,160 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tic0"]
+atlas = ExtResource("9_2xo3q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66u1k"]
+atlas = ExtResource("9_2xo3q")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbgpe"]
+atlas = ExtResource("9_2xo3q")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m13t4"]
+atlas = ExtResource("9_2xo3q")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r65ku"]
+atlas = ExtResource("9_2xo3q")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggkae"]
+atlas = ExtResource("10_3l6h1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rcit"]
+atlas = ExtResource("10_3l6h1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ierpy"]
+atlas = ExtResource("10_3l6h1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn33c"]
+atlas = ExtResource("10_3l6h1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqjlv"]
+atlas = ExtResource("10_3l6h1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkinn"]
+atlas = ExtResource("11_ngcwe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ks6"]
+atlas = ExtResource("11_ngcwe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxgow"]
+atlas = ExtResource("11_ngcwe")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf8yr"]
+atlas = ExtResource("11_ngcwe")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qekll"]
+atlas = ExtResource("11_ngcwe")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pjmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tic0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66u1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbgpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m13t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r65ku")
+}],
+"loop": 1,
+"name": &"ele_minimalistic_black",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggkae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rcit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ierpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn33c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqjlv")
+}],
+"loop": 1,
+"name": &"ele_minimalistic_white",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkinn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ks6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxgow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf8yr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qekll")
+}],
+"loop": 1,
+"name": &"ele_regular",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_1ytmg")
+}],
+"loop": 1,
+"name": &"none",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox7tp"]
+atlas = ExtResource("11_34t5m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b0vj"]
+atlas = ExtResource("11_34t5m")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq5q0"]
+atlas = ExtResource("11_34t5m")
+region = Rect2(128, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_dwrc3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_2xo3q")
+"texture": SubResource("AtlasTexture_ox7tp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_3l6h1")
+"texture": SubResource("AtlasTexture_8b0vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq5q0")
 }],
 "loop": 1,
 "name": &"default",
@@ -200,9 +349,19 @@ frame_progress = 0.0037963928
 material = SubResource("ShaderMaterial_s8enn")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_qnalp")
-frame_progress = 0.032034215
+frame = 2
+frame_progress = 0.38103876
+
+[node name="logo" type="AnimatedSprite2D" parent="TextureButton/tshirt" unique_id=490882688]
+position = Vector2(5, -7)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+animation = &"ele_minimalistic_black"
 
 [node name="shorts" type="AnimatedSprite2D" parent="TextureButton" unique_id=743636722 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_dwrc3")
+
+[node name="shoes" type="AnimatedSprite2D" parent="TextureButton" unique_id=1842506349 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_dwrc3")
 
