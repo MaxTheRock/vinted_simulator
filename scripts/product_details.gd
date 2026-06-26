@@ -6,6 +6,8 @@ extends VBoxContainer
 @onready var shipping_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/Shipping
 @onready var condition_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/Condition
 @onready var preview_image = $MarginContainer/VBoxContainer/MarginContainer/TextureRect
+@onready var logo = $MarginContainer/VBoxContainer/MarginContainer/TextureRect/logo
+@onready var brand_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer6/MarginContainer/Brand
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
@@ -13,7 +15,8 @@ var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
 var socks_texture = preload("res://shaders/socks_colours.png")
 var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 
-func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping, condition, color_index) -> void:
+func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping, condition, color_index, brand) -> void:
+	preview_image.visible = true
 	if sprite:
 		preview_image.texture = sprite.sprite_frames.get_frame_texture("default", sprite.frame)
 	type_label.text = "Type: " + str(type)
@@ -21,6 +24,7 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 	price_label.text = "Price: $" + str(price)
 	shipping_label.text = "Shipping Time: " + str(shipping) + " days"
 	condition_label.text = "Condition: " + str(condition)
+	brand_label.text = "Brand: " + str(brand)
 	
 	if preview_image.material == null:
 		preview_image.material = ShaderMaterial.new()
@@ -43,3 +47,13 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 	
 	else:
 		preview_image.material.shader = null
+		
+func display_logo(sprite: AnimatedSprite2D, brand, frame):
+	logo.animation = brand
+	logo.frame = frame
+	
+func stop_logo() -> void:
+	logo.stop()
+
+func on_ready() -> void:
+	preview_image.visible = false
