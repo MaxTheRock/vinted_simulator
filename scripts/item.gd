@@ -19,12 +19,14 @@ var sprite_image: AnimatedSprite2D
 var brandmult = 1
 var brand = "none"
 var selected_brand = "none"
+var counter: int = 0
 
 @onready var tshirt_sprite: AnimatedSprite2D = $TextureButton/tshirt
 @onready var socks_sprite: AnimatedSprite2D = $TextureButton/socks
 @onready var trouser_sprite: AnimatedSprite2D = $TextureButton/trousers
 @onready var shorts_sprite: AnimatedSprite2D = $TextureButton/shorts
 @onready var shoes_sprite: AnimatedSprite2D = $TextureButton/shoes
+@onready var cd_player_sprite: AnimatedSprite2D = $TextureButton/cd_player
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
@@ -51,8 +53,8 @@ func _ready() -> void:
 		switch_shirt(shoes_sprite, number)
 		sprite_image = shoes_sprite
 	elif type == "cd_player":
-		switch_shirt(shoes_sprite, number)
-		sprite_image = shoes_sprite
+		switch_shirt(cd_player_sprite, number)
+		sprite_image = cd_player_sprite
 
 func logo_calculator(color_of_shirt: String) -> void:
 	selected_brand = brands.pick_random()
@@ -81,18 +83,22 @@ func set_item_type(item_type: String) -> void:
 			child.visible = (child.name == item_type)
 	
 func _on_texture_button_mouse_entered():
+	if type == "cd_player":
+		counter = 0
 	$FrameTimer.start()
 
 func _on_texture_button_mouse_exited():
+	
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if child == self:
+		if child.owner == self:
 			child.frame = 0
+			tshirt_logo.frame = 0
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.visible and child is AnimatedSprite2D and child.owner == self:
-			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type == "cd_player"):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
 			while new_frame == child.frame and max_frames > 1:
@@ -100,6 +106,13 @@ func _on_frame_timer_timeout():
 			child.frame = new_frame
 			tshirt_logo.frame = new_frame
 			details_ui.display_logo(tshirt_logo, brand,new_frame)
+		elif child.visible and child is AnimatedSprite2D and child.owner == self and type == "cd_player":
+			if counter < 12:
+				child.frame = counter
+				counter += 1
+				print("INCREASE", counter)
+			else:
+				child.frame = 12
 
 func generate_parameters(type):
 	if type == "tshirt":
@@ -140,7 +153,6 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-	
 	elif type == "cd_player":
 		number = rng.randi_range(0, colours.size()-1)
 		color = colours[number]
