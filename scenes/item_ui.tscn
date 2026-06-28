@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dccm2cqx7r3hk"]
 
+[ext_resource type="Script" uid="uid://bstavajvi5kim" path="res://scripts/item_ui.gd" id="1_6tkj6"]
 [ext_resource type="Texture2D" uid="uid://fa3u3sv2owa1" path="res://assets/3_dots_small.png" id="1_v7xym"]
 [ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_v7xym"]
 
@@ -34,6 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_6tkj6")
 
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
 position = Vector2(5, 25)
@@ -84,12 +86,17 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/GridContainer/VBoxContainer" unique_id=931499451]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="Buy_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=99252260]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_my6qv")
 text = "Buy"
+
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_exited"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_pressed"]

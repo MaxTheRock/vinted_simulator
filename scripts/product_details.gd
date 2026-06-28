@@ -49,8 +49,13 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.shader = null
 		
 func display_logo(sprite: AnimatedSprite2D, brand, frame):
-	logo.animation = brand
-	logo.frame = frame
+	if brand == "C.O.M.A":
+		logo.animation = "none"
+		logo.frame = 0
+	else:
+		logo.animation = brand
+		logo.frame = frame
+		
 	
 func stop_logo() -> void:
 	logo.stop()

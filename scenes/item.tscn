@@ -66,7 +66,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
@@ -466,7 +466,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="item" type="Node2D" unique_id=942505978]
@@ -482,7 +482,7 @@ material = SubResource("ShaderMaterial_34t5m")
 position = Vector2(32, 32)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_6snss")
-frame_progress = 0.2564286
+frame_progress = 0.81627417
 
 [node name="trousers" type="AnimatedSprite2D" parent="TextureButton" unique_id=1100261359 groups=["clothes"]]
 position = Vector2(32, 32)
@@ -512,6 +512,7 @@ sprite_frames = SubResource("SpriteFrames_dwrc3")
 [node name="cd_player" type="AnimatedSprite2D" parent="TextureButton" unique_id=906608340 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_fih1l")
+frame_progress = 0.20174958
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

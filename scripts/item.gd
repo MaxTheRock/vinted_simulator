@@ -2,7 +2,9 @@ extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["black", "white", "grey", "blue", "green"]
-var items: Array = ["tshirt","socks","trousers","shorts", "shoes","cd_player"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
+var uncommon_items: Array = ["cd_player"]
+
 var brands: Array = ["none", "elemental"]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var number: int = 0
@@ -20,6 +22,12 @@ var brandmult = 1
 var brand = "none"
 var selected_brand = "none"
 var counter: int = 0
+var rarities = {
+	"common": 1000,
+	"uncommon": 300
+}
+var rarity = "common"
+signal rarity_ui(item_rarity: String)
 
 @onready var tshirt_sprite: AnimatedSprite2D = $TextureButton/tshirt
 @onready var socks_sprite: AnimatedSprite2D = $TextureButton/socks
@@ -28,12 +36,16 @@ var counter: int = 0
 @onready var shoes_sprite: AnimatedSprite2D = $TextureButton/shoes
 @onready var cd_player_sprite: AnimatedSprite2D = $TextureButton/cd_player
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
-
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 
-func _ready() -> void:
+func initialize_item():
 	rng.randomize()
-	type = items[rng.randi_range(0, items.size() - 1)]
+	rarity = get_rarity()
+	if rarity == "common":
+		type = common_items[rng.randi_range(0, common_items.size() - 1)]
+	elif rarity == "uncommon":
+		type = uncommon_items[rng.randi_range(0, uncommon_items.size() - 1)]
+		
 	generate_parameters(type)
 	set_item_type(type)
 	if type == "tshirt":
@@ -61,7 +73,23 @@ func _ready() -> void:
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
 		color = "grey"
-
+		
+	
+	
+func get_rarity():
+	rng.randomize()
+	var weighted_sum = 0
+	for n in rarities:
+		weighted_sum += rarities[n]
+	
+	var rarity_selected = rng.randi_range(0,weighted_sum)
+	for n in rarities:
+		if rarity_selected <= rarities[n]:
+			return n
+		else:
+			rarity_selected -= rarities[n]
+			
+				
 func logo_calculator(color_of_shirt: String) -> void:
 	selected_brand = brands.pick_random()
 	if selected_brand == "elemental":
@@ -89,12 +117,13 @@ func set_item_type(item_type: String) -> void:
 			child.visible = (child.name == item_type)
 	
 func _on_texture_button_mouse_entered():
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	if type == "cd_player":
 		counter = 0
 	$FrameTimer.start()
 
 func _on_texture_button_mouse_exited():
-	
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
@@ -116,9 +145,23 @@ func _on_frame_timer_timeout():
 			if counter < 12:
 				child.frame = counter
 				counter += 1
+				details_ui.display_logo(tshirt_logo, brand,counter)
 			else:
 				child.frame = 12
 
+
+func button_enter():
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	$FrameTimer.start()
+	
+func button_exit():
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	$FrameTimer.stop()
+	for child in get_tree().get_nodes_in_group("clothes"):
+		if child.owner == self:
+			child.frame = 0
+			tshirt_logo.frame = 0
+	
 func generate_parameters(type):
 	if type == "tshirt":
 		number = rng.randi_range(0, colours.size()-1)

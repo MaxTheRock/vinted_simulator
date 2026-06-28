@@ -1,6 +1,5 @@
 extends Control
 
-var money : int = 0
 @onready var money_ui_element = $Market/VBoxContainer/PanelContainer/Right/Money_Container/Money
 
 func show_page(page_name):
@@ -22,4 +21,4 @@ func _ready() -> void:
 		generate_item()
 	
 func _process(delta: float) -> void:
-	money_ui_element.text = "$" + str(money)
+	money_ui_element.text = "$" + str(Global.money)

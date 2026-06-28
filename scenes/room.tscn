@@ -8,7 +8,7 @@
 size = Vector2(123, 122)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
-radius = 300.10666
+radius = 201.06218
 
 [node name="Room" type="Node2D" unique_id=1370404577]
 
@@ -18,14 +18,15 @@ script = ExtResource("1_ffxv4")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1938782641]
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=331857807]
+position = Vector2(-35, 13)
 texture = ExtResource("2_85yof")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1651824242]
-position = Vector2(0.5, 1)
+position = Vector2(-34, 14)
 shape = SubResource("RectangleShape2D_qnalp")
 
 [node name="Computer" type="Sprite2D" parent="." unique_id=288269879]
-position = Vector2(448, -243)
+position = Vector2(-17, 302)
 texture = ExtResource("2_85yof")
 script = ExtResource("3_85yof")
 
@@ -35,6 +36,7 @@ offset_top = -89.0
 offset_right = 55.0
 offset_bottom = -66.0
 text = "Computer [F]"
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Computer" unique_id=733437826]
 
