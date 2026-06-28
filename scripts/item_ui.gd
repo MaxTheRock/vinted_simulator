@@ -19,13 +19,12 @@ func _on_buy_button_pressed() -> void:
 	if Global.money >= item.price:
 		Global.money -= item.price
 		print("bought: ", item.type)
+		Global.inventory.append([item.type, item.color, item.brand, item.selected_brand])
+		print(Global.inventory)
 		queue_free()
 	else:
 		print("not enough money!")
 	
-
-
-
 func _on_buy_button_mouse_entered() -> void:
 	item.button_enter()
 

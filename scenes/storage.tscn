@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://da8r2oui42i2a"]
+
+[ext_resource type="Script" uid="uid://ciisxa1vspprr" path="res://scenes/storage.gd" id="1_nnb4j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c3da"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Storage" type="Control" unique_id=923301302]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nnb4j")
+
+[node name="Close" type="Button" parent="." unique_id=508683557]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_4c3da")
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1270022517]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 30.0
+offset_right = 1278.0
+offset_bottom = 720.0
+
+[node name="Inventory_test" type="Label" parent="VBoxContainer" unique_id=265584170]
+layout_mode = 2
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

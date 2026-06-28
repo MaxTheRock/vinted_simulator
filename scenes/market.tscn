@@ -292,7 +292,7 @@ texture = ExtResource("3_d6tgm")
 stretch_mode = 5
 
 [node name="logo" type="AnimatedSprite2D" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer/TextureRect" unique_id=1563911525]
-position = Vector2(215, 81)
+position = Vector2(207, 81)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_k7ps5")
 animation = &"none"
@@ -301,6 +301,8 @@ frame_progress = 0.23014782
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=49860229]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -30)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ennqm")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2" unique_id=18255945]
