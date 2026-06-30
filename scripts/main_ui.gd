@@ -17,7 +17,7 @@ func generate_item() -> void:
 	$Market/VBoxContainer/Sections/Centre/MarginContainer/ScrollContainer/GridContainer.add_child(item_scene)
 	
 func _ready() -> void:
-	for n in 15:
+	for n in 25:
 		generate_item()
 	
 func _process(delta: float) -> void:

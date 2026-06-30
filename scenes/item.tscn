@@ -610,7 +610,7 @@ frame_progress = 0.07507769
 [node name="rubik\'s_cube" type="AnimatedSprite2D" parent="TextureButton" unique_id=506931965 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sqt0q")
-frame_progress = 0.029311875
+frame_progress = 0.78475225
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2
