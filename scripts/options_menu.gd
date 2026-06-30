@@ -4,7 +4,7 @@ extends Control
 @onready var window_mode: OptionButton = $window_mode
 
 func _ready() -> void:
-	window_mode.select(0)
+	window_mode.select(1)
 	var screen := DisplayServer.window_get_current_screen()
 	var screen_size := DisplayServer.screen_get_size(screen)
 	
@@ -33,11 +33,11 @@ func _on_resolution_item_selected(index: int) -> void:
 	var text := resolution.get_item_text(index)
 
 	match text:
-		"3840x2160":
+		"3840x2160 (4K)":
 			set_window_size(Vector2i(3840, 2160))
-		"2560x1440":
+		"2560x1440 (2K)":
 			set_window_size(Vector2i(2560, 1440))
-		"1280x720":
+		"1280x720 (default)":
 			set_window_size(Vector2i(1280, 720))
 		"640x360":
 			set_window_size(Vector2i(640, 360))
@@ -47,7 +47,7 @@ func _on_window_mode_item_selected(index: int) -> void:
 	var text := window_mode.get_item_text(index)
 
 	match text:
-		"Fullscreen (default)":
+		"Fullscreen":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		"Windowed":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

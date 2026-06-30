@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="12_1ytmg"]
 [ext_resource type="Texture2D" uid="uid://0urssekbooyl" path="res://assets/items/shoes/shoes.png" id="13_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://b7qjgavr1c341" path="res://assets/items/shorts/shorts.png" id="13_ngcwe"]
+[ext_resource type="Texture2D" uid="uid://dm3s8yelfdxf1" path="res://assets/items/cube/cube.png" id="16_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="16_1ytmg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34t5m"]
@@ -66,7 +67,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
@@ -466,7 +467,99 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 8.0
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj0n3"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el3wq"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84h63"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr5ju"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skaia"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju53k"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3l1o"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qys0i"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc0ci"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kwet"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqs26"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcqxy"]
+atlas = ExtResource("16_1g6oc")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqt0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj0n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el3wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84h63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr5ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skaia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju53k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3l1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qys0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc0ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kwet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqs26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcqxy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="item" type="Node2D" unique_id=942505978]
@@ -512,10 +605,17 @@ sprite_frames = SubResource("SpriteFrames_dwrc3")
 [node name="cd_player" type="AnimatedSprite2D" parent="TextureButton" unique_id=906608340 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_fih1l")
-frame_progress = 0.20174958
+frame_progress = 0.07507769
+
+[node name="rubik\'s_cube" type="AnimatedSprite2D" parent="TextureButton" unique_id=506931965 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_sqt0q")
+frame_progress = 0.029311875
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1359772644]
 
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="mouse_exited" from="TextureButton" to="." method="_on_texture_button_mouse_exited"]
