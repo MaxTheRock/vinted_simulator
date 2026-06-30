@@ -36,12 +36,13 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="." unique_id=755504315]
 layout_mode = 0
-offset_left = 502.0
+offset_left = 590.0
 offset_top = 117.0
-offset_right = 818.0
+offset_right = 724.0
 offset_bottom = 171.0
 theme_override_font_sizes/font_size = 39
-text = "Vinted Simulator"
+text = "Minted"
 
 [connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]
 [connection signal="button_down" from="Options_Button" to="." method="_on_options_button_button_down"]
+[connection signal="pressed" from="Quit_Button" to="." method="_on_quit_button_pressed"]
