@@ -1,35 +1,27 @@
 [gd_scene format=3 uid="uid://tkwio75ov5xs"]
 
-[ext_resource type="Script" uid="uid://jpt5cerd61ct" path="res://scripts/player.gd" id="1_ffxv4"]
-[ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="2_85yof"]
+[ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/room.png" id="1_jxe34"]
+[ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="3_85yof"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="4_14vil"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
-size = Vector2(70.5, 70)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxe34"]
+size = Vector2(413, 206.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
-radius = 201.06218
+radius = 127.09839
 
 [node name="Room" type="Node2D" unique_id=1370404577]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=594051949]
-script = ExtResource("1_ffxv4")
+[node name="room" type="Sprite2D" parent="." unique_id=677097860]
+scale = Vector2(2, 2)
+texture = ExtResource("1_jxe34")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1938782641]
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=331857807]
-position = Vector2(-63.5, -16)
-scale = Vector2(0.5546875, 0.546875)
-texture = ExtResource("2_85yof")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1651824242]
-position = Vector2(-62.75, -18)
-shape = SubResource("RectangleShape2D_qnalp")
+[node name="Camera2D" type="Camera2D" parent="room" unique_id=1938782641]
+scale = Vector2(0.5, 0.5)
 
 [node name="Computer" type="Sprite2D" parent="." unique_id=288269879]
 position = Vector2(-17, 302)
-texture = ExtResource("2_85yof")
 script = ExtResource("3_85yof")
 
 [node name="Label" type="Label" parent="Computer" unique_id=1564051719]
@@ -40,14 +32,18 @@ offset_bottom = -66.0
 text = "Computer [F]"
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="Computer" unique_id=733437826]
+[node name="Area2D" type="Area2D" parent="." unique_id=733437826]
+position = Vector2(-17, 302)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1975276463]
-shape = SubResource("CircleShape2D_qnalp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975276463]
+position = Vector2(-10.5, -47.25)
+shape = SubResource("RectangleShape2D_jxe34")
+
+[node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_14vil")]
+position = Vector2(47, 109)
 
 [node name="Storage" type="Sprite2D" parent="." unique_id=423350913]
-position = Vector2(-15, -306)
-texture = ExtResource("2_85yof")
+position = Vector2(493, -217)
 script = ExtResource("4_14vil")
 
 [node name="Label" type="Label" parent="Storage" unique_id=320446712]
@@ -61,9 +57,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="Storage" unique_id=1097988032]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Storage/Area2D" unique_id=1060257465]
+position = Vector2(-17, 32)
 shape = SubResource("CircleShape2D_qnalp")
 
-[connection signal="body_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="Computer" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Computer" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_exited"]
