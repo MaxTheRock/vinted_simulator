@@ -29,16 +29,19 @@ var rarities = {
 var rarity = "common"
 signal rarity_ui(item_rarity: String)
 
-@onready var tshirt_sprite: AnimatedSprite2D = $TextureButton/tshirt
-@onready var socks_sprite: AnimatedSprite2D = $TextureButton/socks
-@onready var trouser_sprite: AnimatedSprite2D = $TextureButton/trousers
-@onready var shorts_sprite: AnimatedSprite2D = $TextureButton/shorts
-@onready var shoes_sprite: AnimatedSprite2D = $TextureButton/shoes
-@onready var cd_player_sprite: AnimatedSprite2D = $TextureButton/cd_player
+@onready var sprites := {
+	"tshirt": $TextureButton/tshirt,
+	"socks": $TextureButton/socks,
+	"trousers": $TextureButton/trousers,
+	"shorts": $TextureButton/shorts,
+	"shoes": $TextureButton/shoes,
+	"cd_player": $TextureButton/cd_player,
+	"puzzle_cube": $TextureButton/puzzle_cube,
+	"spud_poster": $TextureButton/spud_poster,
+}
+
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
-@onready var rubiks_cube_sprite: AnimatedSprite2D = $TextureButton/puzzle_cube
-@onready var spud_poster_sprite: AnimatedSprite2D = $TextureButton/spud_poster
 
 func initialize_item():
 	rng.randomize()
@@ -50,38 +53,23 @@ func initialize_item():
 		
 	generate_parameters(type)
 	set_item_type(type)
+	if sprites.has(type):
+		var sprite = sprites[type]
+		set_node_palette(sprite, number)
+		sprite_image = sprite
 	if type == "tshirt":
 		logo_calculator(color)
-		switch_shirt(tshirt_sprite, number);
-		sprite_image = tshirt_sprite
-	elif type == "socks":
-		switch_shirt(socks_sprite, number);
-		sprite_image = socks_sprite
-	elif type == "trousers":
-		switch_shirt(trouser_sprite, number)
-		sprite_image = trouser_sprite
-	elif type == "shorts":
-		switch_shirt(shorts_sprite, number)
-		sprite_image = shorts_sprite
 	elif type == "shoes":
-		switch_shirt(shoes_sprite, number)
-		sprite_image = shoes_sprite
 		selected_brand = "elemental"
 		brand = "ele_shoes"
 		color = "grey"
 	elif type == "cd_player":
-		switch_shirt(cd_player_sprite, number)
-		sprite_image = cd_player_sprite
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
 		color = "grey"
 	elif type == "puzzle_cube":
-		switch_shirt(rubiks_cube_sprite, number)
-		sprite_image = rubiks_cube_sprite
 		color = "multi"
 	elif type == "spud_poster":
-		switch_shirt(spud_poster_sprite, number)
-		sprite_image = spud_poster_sprite
 		color = "brown"
 	
 func get_rarity():
@@ -236,9 +224,6 @@ func condition_mult_calc(condition: String) -> float:
 		return 0.9
 	else:
 		return 1.0
-
-func switch_shirt(sprite, num):
-	set_node_palette(sprite, num)
 
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	if target_sprite and target_sprite.material is ShaderMaterial:

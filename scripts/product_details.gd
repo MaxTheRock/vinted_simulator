@@ -21,7 +21,10 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.texture = sprite.sprite_frames.get_frame_texture("default", sprite.frame)
 	product_label_name.text = name_generator(brand, color, type, condition)
 	color_label.text = "Colour: " + str(color)[0].to_upper() + str(color).substr(1)
-	price_label.text = "$" + str(price)
+	if str(price)[-2] == ".":
+		price_label.text = "$" + str(price) + "0"
+	else:
+		price_label.text = "$" + str(price)
 	shipping_label.text = "Shipping Time: " + str(shipping) + " days"
 	condition_label.text = "Condition: " + str(condition)
 	brand_label.text = "Brand: " + str(brand)[0].to_upper() + str(brand).substr(1)
@@ -75,5 +78,8 @@ func name_generator(brand, color, type, condition) -> String:
 		display_type = "CD Player"
 	if type == "puzzle_cube":
 		display_type = "Puzzle Cube"
+		display_color = ""
+	if type == "spud_poster":
+		display_type = "Spud Poster"
 		display_color = ""
 	return brand_print + display_color + " " + display_type + "."
