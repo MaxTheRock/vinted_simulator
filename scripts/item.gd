@@ -37,6 +37,10 @@ var rarities = {
 }
 var rarity = "common"
 signal rarity_ui(item_rarity: String)
+var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
+var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
+var socks_texture = preload("res://shaders/socks_colours.png")
+var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -255,5 +259,25 @@ func condition_mult_calc(condition: String) -> float:
 		return 1.0
 
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
-	if target_sprite and target_sprite.material is ShaderMaterial:
+	if target_sprite.material == null:
+		target_sprite.material = ShaderMaterial.new()
+	if type == "socks":
+		target_sprite.material.shader = socks_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 6)
+		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
+		
+	elif type == "tshirt":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 5)
+		target_sprite.material.set_shader_parameter("palette_count", 10)
+		target_sprite.set_instance_shader_parameter("palette_index", num)
+	
+	else:
+		target_sprite.material.shader = null
