@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b7qjgavr1c341" path="res://assets/items/shorts/shorts.png" id="13_ngcwe"]
 [ext_resource type="Texture2D" uid="uid://dm3s8yelfdxf1" path="res://assets/items/cube/cube.png" id="16_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="16_1ytmg"]
+[ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34t5m"]
 shader = ExtResource("5_j134a")
@@ -625,6 +626,42 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_twbge"]
+atlas = ExtResource("17_1g6oc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_243t2"]
+atlas = ExtResource("17_1g6oc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwylo"]
+atlas = ExtResource("17_1g6oc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe6rj"]
+atlas = ExtResource("17_1g6oc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c3da"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twbge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_243t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwylo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe6rj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -674,6 +711,10 @@ frame_progress = 0.07507769
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sqt0q")
 frame_progress = 0.78475225
+
+[node name="spud_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=573951217 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_4c3da")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

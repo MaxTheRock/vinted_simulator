@@ -3,7 +3,7 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["black", "white", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
 var brands: Array = ["none", "elemental"]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -38,6 +38,7 @@ signal rarity_ui(item_rarity: String)
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 @onready var rubiks_cube_sprite: AnimatedSprite2D = $TextureButton/puzzle_cube
+@onready var spud_poster_sprite: AnimatedSprite2D = $TextureButton/spud_poster
 
 func initialize_item():
 	rng.randomize()
@@ -78,6 +79,10 @@ func initialize_item():
 		switch_shirt(rubiks_cube_sprite, number)
 		sprite_image = rubiks_cube_sprite
 		color = "multi"
+	elif type == "spud_poster":
+		switch_shirt(spud_poster_sprite, number)
+		sprite_image = spud_poster_sprite
+		color = "brown"
 	
 func get_rarity():
 	rng.randomize()
@@ -210,6 +215,11 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(10 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "puzzle_cube":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "spud_poster":
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
